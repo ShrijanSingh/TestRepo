@@ -15,7 +15,7 @@ public class RatInMaze {
     {
         if (sr>er || sc>ec)
         return 0;
-        if (sr==er || sc==ec)
+        if (sr==er && sc==ec)
         return 1;
         int downways=noOfWays(sr+1,sc,er,ec);
         int rightways=noOfWays(sr,sc+1,er,ec);
