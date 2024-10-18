@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class RatInMaze {
     public static void main(String[] args) {
         int n = 0;
@@ -13,7 +12,6 @@ public class RatInMaze {
         // System.out.println("No of ways="+res);
 
     }
-
     public static void noOfWays(int sr, int sc, int er, int ec, String s,boolean visited[][]) {
        
         if (sr<0 || sc<0)
@@ -36,5 +34,6 @@ public class RatInMaze {
         // go up
     noOfWays(sr, sc+1, er, ec, s+"R", visited);
     visited[sr][sc]=false;
+    //I am making certain changed here to test github
 }
 }
