@@ -134,31 +134,64 @@ public class BST {
             System.out.print("Null");
             System.out.println();
         }
-    
+        //Validate BST
+        public static boolean validateBST(Node root, Node max,Node min)
+        {
+            if (root==null)
+            return true;
+            if (max!=null && root.data>=max.data)
+            return false;
+            else if(min!=null && root.data<=min.data)
+            return false;
+           return  validateBST(root.left, root, min) && validateBST(root.right, max, root);
+        }
+        //Mirror BST
+        public static Node mirrorBST(Node root)
+        {
+            if (root==null)
+            return null;
+            Node leftMirror=mirrorBST(root.left);
+            Node rightMirror=mirrorBST(root.right);
+            root.left=rightMirror;
+            root.right=leftMirror;
+            return root;
 
+        }
+        //Sorted Array to BST
+        public static Node createBST(int ar[],int st,int end)
+        {
+            if (st>end)
+            return null;
+            int mid=(end+st)/2;
+            Node root=new Node(ar[mid]);
+            root.left=createBST(ar, st, mid-1);
+            root.right=createBST(ar, mid+1, end);
+            return root;
+
+        }
 
 
         public static void main(String[] args) {
-        int value[]={8,5,3,6,10,11,14};
+        int value[]={8,5,3,6,2,7,1};
         Node root=null;
         for (int i=0;i<value.length;i++)
         {
             root=insert(root,value[i]);
         }
         
-        //Inorder Traversal Of BST
-        System.out.println("Inorder Traversal of BST");
-        inorder(root);
-        System.out.println();
-        // Searching in BST
-        int key=3;
-        if (Search(root, key))
-        {
-        System.out.println("Searched element is found");
-        }
-        else{
-        System.out.println("Searched element not found");
-    }
+    //     //Inorder Traversal Of BST
+    //     System.out.println("Inorder Traversal of BST");
+    //     inorder(root);
+    //     System.out.println();
+    //     // Searching in BST
+    //     int key=3;
+    //     if (Search(root, key))
+    //     {
+    //     System.out.println("Searched element is found");
+    //     }
+    //     else{
+    //     System.out.println("Searched element not found");
+    // }
     // //Delete Node From BST
     //    root= delNode(root, 5);
     // //After Deletion;
@@ -167,8 +200,24 @@ public class BST {
     // System.out.println();
     // //Print In Range
     // printInRange(root, 3, 4);
-    // //Print path to LeafNode
-    System.out.println("Print path to leaf Node");
-    leafPath(root, new ArrayList<>());
+    //Print path to LeafNode
+    // System.out.println("Print path to leaf Node");
+    // leafPath(root, new ArrayList<>());
+    // if (validateBST(root,null,null))
+    // System.out.println("Valid BST");
+    // else 
+    // System.out.println("Not Valid BST");
+        //Mirror BST
+    // System.out.println("Before Mirroring");
+    // inorder(root);
+    // root=mirrorBST(root);
+    // System.out.println();
+    // System.out.println("After Mirroring");
+    // inorder(root);
+    // //Sorted Array to BST
+    int values[]={3,5,6,8,9,10};
+    root=createBST(values, 0, values.length);
+    inorder(root);
+
 }
 }
